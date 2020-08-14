@@ -6,7 +6,7 @@ homepage: https://github.com/angel-dart/migration
 environment:
   sdk: ">=2.0.0-dev <3.0.0"
 dependencies:
-  angel_orm: 
+  angel_orm:
     git:
       url: https://github.com/bettdouglas/angel_orm_with_intlintl_0.16.1.git
   args: ^1.0.0
