@@ -4,26 +4,22 @@ description: Command-line based database migration runner for Angel's ORM.
 author: Tobe O <thosakwe@gmail.com>
 homepage: https://github.com/angel-dart/migration
 environment:
-  sdk: ">=2.0.0-dev <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 dependencies:
-  # angel_orm:
-  #   git:
-  #     url: https://github.com/bettdouglas/angel_orm_with_intlintl_0.16.1.git
   args: ^1.0.0
   postgres:
     git:
       url: https://github.com/bettdouglas/postgresql-dart.git
       ref: 84887fe204a9fa90178569d2ea0aef492be45267
-  analyzer: ">=0.35.0 <2.0.0"
-  build: ^1.0.0
-  build_config: ^0.4.0
-  code_builder: ^3.0.0
-  dart_style: ^1.0.0
-  inflection2: ^0.4.2
-  meta: ^1.0.0
-  path: ^1.0.0
-  recase: ^2.0.0
-  source_gen: ^0.9.0
-  code_buffer: ^1.0.0
+  analyzer: 0.39.17
+  build: 1.0.0
+  build_config: 0.4.0
+  code_builder: 3.0.0
+  dart_style: 1.0.0
+  inflection2: 0.4.2
+  path: 1.0.0
+  recase: 3.0.0
+  source_gen: 0.9.0
+  code_buffer: 1.0.0
   quiver: ^2.0.0
-  quiver_hashcode: ^2.0.0
+  quiver_hashcode: 2.0.0

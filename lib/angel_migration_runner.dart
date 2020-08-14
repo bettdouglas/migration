@@ -7,7 +7,6 @@ export 'src/orm_postgres/angel_orm_postgres.dart';
 export 'src/serialize/serializer.dart';
 export 'src/serialize_generator/angel_serialize_generator.dart';
 
-
 // part 'src/orm/angel_orm.dart';
 
 //   angel_serialize: ^2.0.0 # Serialization runtime support

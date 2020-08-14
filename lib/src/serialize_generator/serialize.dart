@@ -154,12 +154,12 @@ class ${pascal}Decoder extends Converter<Map, ${pascal}> {
 
         // Serialize model classes via `XSerializer.toMap`
         else if (isModelClass(type)) {
-          var rc = ReCase(type.name);
+          var rc = ReCase(type.element.name);
           serializedRepresentation =
               '${serializerToMap(rc, 'model.${field.name}')}';
         } else if (type is InterfaceType) {
           if (isListOfModelType(type)) {
-            var name = type.typeArguments[0].name;
+            var name = type.typeArguments[0].element.name;
             if (name.startsWith('_')) name = name.substring(1);
             var rc = ReCase(name);
             var m = serializerToMap(rc, 'm');
@@ -168,7 +168,7 @@ class ${pascal}Decoder extends Converter<Map, ${pascal}> {
               ?.map((m) => $m)
               ?.toList()''';
           } else if (isMapToModelType(type)) {
-            var rc = ReCase(type.typeArguments[1].name);
+            var rc = ReCase(type.typeArguments[1].element.name);
             serializedRepresentation =
                 '''model.${field.name}.keys?.fold({}, (map, key) {
               return map..[key] =
@@ -178,7 +178,7 @@ class ${pascal}Decoder extends Converter<Map, ${pascal}> {
             serializedRepresentation = '''
             model.${field.name} == null ?
               null
-              : ${type.name}.values.indexOf(model.${field.name})
+              : ${type.element.name}.values.indexOf(model.${field.name})
             ''';
           } else if (const TypeChecker.fromRuntime(Uint8List)
               .isAssignableFromType(type)) {
@@ -276,20 +276,20 @@ class ${pascal}Decoder extends Converter<Map, ${pascal}> {
 
         // Serialize model classes via `XSerializer.toMap`
         else if (isModelClass(type)) {
-          var rc = ReCase(type.name);
+          var rc = ReCase(type.element.name);
           deserializedRepresentation = "map['$alias'] != null"
               " ? ${rc.pascalCase}Serializer.fromMap(map['$alias'] as Map)"
               " : $defaultValue";
         } else if (type is InterfaceType) {
           if (isListOfModelType(type)) {
-            var rc = ReCase(type.typeArguments[0].name);
+            var rc = ReCase(type.typeArguments[0].element.name);
             deserializedRepresentation = "map['$alias'] is Iterable"
                 " ? List.unmodifiable(((map['$alias'] as Iterable)"
                 ".whereType<Map>())"
                 ".map(${rc.pascalCase}Serializer.fromMap))"
                 " : $defaultValue";
           } else if (isMapToModelType(type)) {
-            var rc = ReCase(type.typeArguments[1].name);
+            var rc = ReCase(type.typeArguments[1].element.name);
             deserializedRepresentation = '''
                 map['$alias'] is Map
                   ? Map.unmodifiable((map['$alias'] as Map).keys.fold({}, (out, key) {
@@ -300,12 +300,12 @@ class ${pascal}Decoder extends Converter<Map, ${pascal}> {
             ''';
           } else if (type.element.isEnum) {
             deserializedRepresentation = '''
-            map['$alias'] is ${type.name}
-              ? (map['$alias'] as ${type.name})
+            map['$alias'] is ${type.element.name}
+              ? (map['$alias'] as ${type.element.name})
               :
               (
                 map['$alias'] is int
-                ? ${type.name}.values[map['$alias'] as int]
+                ? ${type.element.name}.values[map['$alias'] as int]
                 : $defaultValue
               )
             ''';

@@ -25,7 +25,7 @@ bool isSpecialId(OrmBuildContext ctx, FieldElement field) {
       field is! RelationFieldImpl &&
           (field.name == 'id' &&
               const TypeChecker.fromRuntime(Model)
-                  .isAssignableFromType(ctx.buildContext.clazz.type));
+                  .isAssignableFromType(ctx.buildContext.clazz.thisType));
 }
 
 Element _findElement(FieldElement field) {
@@ -204,7 +204,7 @@ Future<OrmBuildContext> buildOrmContext(
                 pluralize(foreign.buildContext.modelClassNameRecase.snakeCase);
           } on StackOverflowError {
             throw UnsupportedError(
-                'There is an infinite cycle between ${clazz.name} and ${field.type.name}. This triggered a stack overflow.');
+                'There is an infinite cycle between ${clazz.name} and ${field.type.element.name}. This triggered a stack overflow.');
           }
         }
       }
@@ -248,7 +248,7 @@ Future<OrmBuildContext> buildOrmContext(
             joinTypeType.element.fields.where((f) => f.isEnumConstant).toList();
 
         for (int i = 0; i < enumFields.length; i++) {
-          if (enumFields[i].constantValue == joinTypeRdr) {
+          if (enumFields[i].computeConstantValue() == joinTypeRdr) {
             joinType = JoinType.values[i];
             break;
           }
@@ -289,7 +289,7 @@ Future<OrmBuildContext> buildOrmContext(
       ctx.relations[field.name] = relation;
     } else {
       if (column?.type == null) {
-        throw 'Cannot infer SQL column type for field "${ctx.buildContext.originalClassName}.${field.name}" with type "${field.type.displayName}".';
+        throw 'Cannot infer SQL column type for field "${ctx.buildContext.originalClassName}.${field.name}" with type "${field.type.getDisplayString()}".';
       }
 
       // Expressions...

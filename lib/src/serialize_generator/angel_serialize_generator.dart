@@ -81,7 +81,7 @@ String dartObjectToString(DartObject v) {
   if (v.toIntValue() != null) return v.toIntValue().toString();
   if (v.toDoubleValue() != null) return v.toDoubleValue().toString();
   if (v.toSymbolValue() != null) return '#' + v.toSymbolValue();
-  if (v.toTypeValue() != null) return v.toTypeValue().name;
+  if (v.toTypeValue() != null) return v.toTypeValue().element.name;
   if (v.toListValue() != null) {
     return 'const [' + v.toListValue().map(dartObjectToString).join(', ') + ']';
   }
@@ -101,9 +101,9 @@ String dartObjectToString(DartObject v) {
     // Find the index of the enum, then find the member.
     for (var field in type.element.fields) {
       if (field.isEnumConstant && field.isStatic) {
-        var value = type.element.getField(field.name).constantValue;
+        var value = type.element.getField(field.name).computeConstantValue();
         if (value == v) {
-          return '${type.name}.${field.name}';
+          return '${type.getDisplayString()}.${field.name}';
         }
       }
     }
@@ -169,12 +169,12 @@ bool isAssignableToModel(DartType type) =>
 /// Compute a [String] representation of a [type].
 String typeToString(DartType type) {
   if (type is InterfaceType) {
-    if (type.typeArguments.isEmpty) return type.name;
-    return type.name +
+    if (type.typeArguments.isEmpty) return type.getDisplayString();
+    return type.getDisplayString() +
         '<' +
         type.typeArguments.map(typeToString).join(', ') +
         '>';
   } else {
-    return type.name;
+    return type.getDisplayString();
   }
 }

@@ -535,7 +535,7 @@ class OrmGenerator extends GeneratorForAnnotation<Orm> {
             isSpecialId(ctx, field)) {
           builderType = TypeReference((b) => b
             ..symbol = 'NumericSqlExpressionBuilder'
-            ..types.add(refer(isSpecialId(ctx, field) ? 'int' : type.name)));
+            ..types.add(refer(isSpecialId(ctx, field) ? 'int' : type.element.name)));
         } else if (type is InterfaceType && type.element.isEnum) {
           builderType = TypeReference((b) => b
             ..symbol = 'EnumSqlExpressionBuilder'
@@ -566,7 +566,7 @@ class OrmGenerator extends GeneratorForAnnotation<Orm> {
           }
         } else {
           throw UnsupportedError(
-              'Cannot generate ORM code for field of type ${field.type.name}.');
+              'Cannot generate ORM code for field of type ${field.type.getDisplayString()}.');
         }
 
         clazz.fields.add(Field((b) {
