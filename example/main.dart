@@ -3,8 +3,8 @@ import 'package:angel_migration_runner/src/migration_runner/postgres/runner.dart
 import 'package:postgres/postgres.dart';
 import 'todo.dart';
 
-var migrationRunner = new PostgresMigrationRunner(
-  new PostgreSQLConnection(
+var migrationRunner = PostgresMigrationRunner(
+  PostgreSQLConnection(
     '127.0.0.1',
     5432,
     'postgres',
@@ -12,8 +12,8 @@ var migrationRunner = new PostgresMigrationRunner(
     password: 'Mula1000',
   ),
   migrations: [
-    new UserMigration(),
-    new TodoMigration(),
+    UserMigration(),
+    TodoMigration(),
   ],
 );
 

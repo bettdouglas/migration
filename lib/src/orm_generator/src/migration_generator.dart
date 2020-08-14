@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
-import 'package:angel_model/angel_model.dart';
-import 'package:angel_orm/angel_orm.dart';
-import 'package:angel_serialize_generator/angel_serialize_generator.dart';
+import 'package:angel_migration_runner/angel_migration_runner.dart';
+import 'package:angel_migration_runner/src/model/model.dart';
+import 'package:angel_migration_runner/src/orm/angel_orm.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';

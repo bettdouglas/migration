@@ -10,7 +10,7 @@ class PostgresSchema extends Schema {
 
   PostgresSchema._(this._buf, this._indent);
 
-  factory PostgresSchema() => new PostgresSchema._(new StringBuffer(), 0);
+  factory PostgresSchema() => PostgresSchema._(StringBuffer(), 0);
 
   Future run(PostgreSQLConnection connection) => connection.execute(compile());
 
@@ -32,7 +32,7 @@ class PostgresSchema extends Schema {
 
   @override
   void alter(String tableName, void callback(MutableTable table)) {
-    var tbl = new PostgresAlterTable(tableName);
+    var tbl = PostgresAlterTable(tableName);
     callback(tbl);
     _writeln('ALTER TABLE "$tableName"');
     tbl.compile(_buf, _indent + 1);
@@ -41,7 +41,7 @@ class PostgresSchema extends Schema {
 
   void _create(String tableName, void callback(Table table), bool ifNotExists) {
     var op = ifNotExists ? ' IF NOT EXISTS' : '';
-    var tbl = new PostgresTable();
+    var tbl = PostgresTable();
     callback(tbl);
     _writeln('CREATE TABLE$op "$tableName" (');
     tbl.compile(_buf, _indent + 1);

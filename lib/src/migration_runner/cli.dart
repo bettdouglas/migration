@@ -4,11 +4,11 @@ import 'runner.dart';
 
 /// Runs the Angel Migration CLI.
 Future runMigrations(MigrationRunner migrationRunner, List<String> args) {
-  var cmd = new CommandRunner('migration_runner', 'Executes Angel migrations.')
-    ..addCommand(new _UpCommand(migrationRunner))
-    ..addCommand(new _RefreshCommand(migrationRunner))
-    ..addCommand(new _ResetCommand(migrationRunner))
-    ..addCommand(new _RollbackCommand(migrationRunner));
+  var cmd = CommandRunner('migration_runner', 'Executes Angel migrations.')
+    ..addCommand(_UpCommand(migrationRunner))
+    ..addCommand(_RefreshCommand(migrationRunner))
+    ..addCommand(_ResetCommand(migrationRunner))
+    ..addCommand(_RollbackCommand(migrationRunner));
   return cmd.run(args).then((_) => migrationRunner.close());
 }
 

@@ -9,7 +9,7 @@ import 'schema.dart';
 class PostgresMigrationRunner implements MigrationRunner {
   final Map<String, Migration> migrations = {};
   final PostgreSQLConnection connection;
-  final Queue<Migration> _migrationQueue = new Queue();
+  final Queue<Migration> _migrationQueue = Queue();
   bool _connected = false;
 
   PostgresMigrationRunner(this.connection,
@@ -63,7 +63,7 @@ class PostgresMigrationRunner implements MigrationRunner {
 
       for (var k in toRun) {
         var migration = migrations[k];
-        var schema = new PostgresSchema();
+        var schema = PostgresSchema();
         migration.up(schema);
         print('Bringing up "$k"...');
         await schema.run(connection).then((_) {
@@ -94,7 +94,7 @@ class PostgresMigrationRunner implements MigrationRunner {
     if (toRun.isNotEmpty) {
       for (var k in toRun.reversed) {
         var migration = migrations[k];
-        var schema = new PostgresSchema();
+        var schema = PostgresSchema();
         migration.down(schema);
         print('Bringing down "$k"...');
         await schema.run(connection).then((_) {
@@ -118,7 +118,7 @@ class PostgresMigrationRunner implements MigrationRunner {
     if (toRun.isNotEmpty) {
       for (var k in toRun) {
         var migration = migrations[k];
-        var schema = new PostgresSchema();
+        var schema = PostgresSchema();
         migration.down(schema);
         print('Bringing down "$k"...');
         await schema.run(connection).then((_) {

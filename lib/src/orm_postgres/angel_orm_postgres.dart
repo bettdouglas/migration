@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:angel_orm/angel_orm.dart';
+import 'package:angel_migration_runner/src/orm/src/query_executor.dart';
 import 'package:logging/logging.dart';
 // import 'package:pool/pool.dart';
 import 'package:postgres/postgres.dart';
@@ -78,7 +78,7 @@ class PostgreSqlExecutor extends QueryExecutor {
 //   /// The maximum amount of concurrent connections.
 //   final int size;
 
-//   /// Creates a new [PostgreSQLConnection], on demand.
+//   /// Creates a [PostgreSQLConnection], on demand.
 //   ///
 //   /// The created connection should **not** be open.
 //   final PostgreSQLConnection Function() connectionFactory;
@@ -88,10 +88,10 @@ class PostgreSqlExecutor extends QueryExecutor {
 
 //   final List<PostgreSqlExecutor> _connections = [];
 //   int _index = 0;
-//   final Pool _pool, _connMutex = new Pool(1);
+//   final Pool _pool, _connMutex = Pool(1);
 
 //   PostgreSqlExecutorPool(this.size, this.connectionFactory, {this.logger})
-//       : _pool = new Pool(size) {
+//       : _pool = Pool(size) {
 //     assert(size > 0, 'Connection pool cannot be empty.');
 //   }
 
@@ -104,12 +104,12 @@ class PostgreSqlExecutor extends QueryExecutor {
 
 //   Future _open() async {
 //     if (_connections.isEmpty) {
-//       _connections.addAll(await Future.wait(new List.generate(size, (_) {
+//       _connections.addAll(await Future.wait(List.generate(size, (_) {
 //         logger?.fine('Spawning connections...');
 //         var conn = connectionFactory();
 //         return conn
 //             .open()
-//             .then((_) => new PostgreSqlExecutor(conn, logger: logger));
+//             .then((_) => PostgreSqlExecutor(conn, logger: logger));
 //       })));
 //     }
 //   }
