@@ -1,8 +1,13 @@
 export 'src/migration/migration.dart';
 export 'src/migration_runner/migration_runner.dart';
+export 'src/model/model.dart';
+export 'src/orm/angel_orm.dart';
 export 'src/orm_generator/angel_orm_generator.dart';
 export 'src/orm_postgres/angel_orm_postgres.dart';
+export 'src/serialize/serializer.dart';
 export 'src/serialize_generator/angel_serialize_generator.dart';
+
+
 // part 'src/orm/angel_orm.dart';
 
 //   angel_serialize: ^2.0.0 # Serialization runtime support

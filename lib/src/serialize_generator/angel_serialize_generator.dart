@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:angel_migration_runner/angel_migration_runner.dart';
 import 'package:angel_migration_runner/src/model/model.dart';
 import 'package:build/build.dart';
 import 'package:code_buffer/code_buffer.dart';
@@ -39,7 +40,7 @@ Builder typescriptDefinitionBuilder(_) {
 /// Converts a [DartType] to a [TypeReference].
 TypeReference convertTypeReference(DartType t) {
   return TypeReference((b) {
-    b..symbol = t.name;
+    b..symbol = t.getDisplayString();
 
     if (t is InterfaceType) {
       b.types.addAll(t.typeArguments.map(convertTypeReference));
