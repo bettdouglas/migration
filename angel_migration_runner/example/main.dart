@@ -1,5 +1,4 @@
 import 'package:angel_migration_runner/angel_migration_runner.dart';
-import 'package:angel_migration_runner/postgres.dart';
 import 'package:postgres/postgres.dart';
 import '../../angel_migration/example/todo.dart';
 

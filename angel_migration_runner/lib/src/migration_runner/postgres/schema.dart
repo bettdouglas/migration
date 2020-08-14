@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:angel_migration/angel_migration.dart';
 import 'package:postgres/postgres.dart';
-import 'package:angel_migration_runner/src/postgres/table.dart';
+
+import 'table.dart';
 
 class PostgresSchema extends Schema {
   final int _indent;

@@ -6,7 +6,11 @@ homepage: https://github.com/angel-dart/migration
 environment:
   sdk: ">=2.0.0-dev <3.0.0"
 dependencies:
-  angel_migration: ^2.0.0-alpha
-  angel_orm: ^2.0.0-dev.2
+  angel_orm: 
+    git:
+      url: https://github.com/bettdouglas/angel_orm_with_intlintl_0.16.1.git
   args: ^1.0.0
-  postgres: ">=0.9.5 <2.0.0"
+  postgres:
+    git:
+      url: https://github.com/bettdouglas/postgresql-dart.git
+      ref: 84887fe204a9fa90178569d2ea0aef492be45267
