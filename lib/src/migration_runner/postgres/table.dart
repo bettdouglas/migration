@@ -1,6 +1,6 @@
 import 'dart:collection';
+import 'package:angel_migration_runner/src/migration/migration.dart';
 import 'package:angel_orm/angel_orm.dart';
-import 'package:angel_migration/angel_migration.dart';
 
 abstract class PostgresGenerator {
   static String columnType(MigrationColumn column) {

@@ -3,7 +3,8 @@
 /// You will likely never have to actually write these yourself.
 library angel_migration.example.todo;
 
-import 'package:angel_migration/angel_migration.dart';
+import 'package:angel_migration_runner/src/migration/migration.dart';
+
 
 class UserMigration implements Migration {
   @override

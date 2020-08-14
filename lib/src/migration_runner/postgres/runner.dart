@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
-import 'package:angel_migration/angel_migration.dart';
+import 'package:angel_migration_runner/src/migration/migration.dart';
 import 'package:postgres/postgres.dart';
 import '../runner.dart';
 import '../util.dart';
